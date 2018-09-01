@@ -1,0 +1,12 @@
+<mat-card class="jugador-card">
+  <mat-card-header>
+    <div mat-card-avatar class="jugador-header-image"></div>
+    <mat-card-title>{{ jugador }}</mat-card-title>
+    <mat-card-subtitle>{{ equipo }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+jugador">
+
+  <mat-card-actions align="end">
+    <button mat-button color="primary" (click)="activarJugador()">Activar</button>
+  </mat-card-actions>
+</mat-card>

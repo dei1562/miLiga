@@ -1,0 +1,25 @@
+<p>
+  Equipo: {{ nombre }}
+</p>
+
+<h2>Jugadores</h2>
+
+<mat-accordion class="jugadores-headers-align">
+  <mat-expansion-panel hideToggle="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ jugador }}
+      </mat-panel-title>
+      <mat-panel-description>
+        Delantero
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <p>Estado: {{ estatus }}</p>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<mat-divider></mat-divider>
+
+<app-jugadores [nombre]="jugador" [equipo]="nombre" (onActive)="actualizarEstado($event)"></app-jugadores>
