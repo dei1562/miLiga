@@ -2,11 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatToolbarModule, MatButtonModule, MatCardModule, MatDividerModule, MatExpansionModule, MatIconModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { JuegoComponent } from './juego/juego.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { JugadoresComponent } from './jugadores/jugadores.component';
+
+const appRoutes: Routes = [
+  { path: 'equipo', component: EquipoComponent },
+  { path: 'juegos', component: JuegoComponent },
+  { path: '',   redirectTo: '/equipo', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
@@ -23,7 +30,11 @@ import { JugadoresComponent } from './jugadores/jugadores.component';
     MatCardModule,
     MatDividerModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

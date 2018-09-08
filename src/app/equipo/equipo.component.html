@@ -8,18 +8,21 @@
   <mat-expansion-panel hideToggle="true">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ jugador }}
+        {{ jugador.nombre }}
       </mat-panel-title>
       <mat-panel-description>
-        Delantero
+        {{ jugador.posicion }}
         <mat-icon>account_circle</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     
-    <p>Estado: {{ estatus }}</p>
+    <p>Estado: {{ jugador.estado }}</p>
   </mat-expansion-panel>
 </mat-accordion>
 
 <mat-divider></mat-divider>
 
-<app-jugadores [nombre]="jugador" [equipo]="nombre" (onActive)="actualizarEstado($event)"></app-jugadores>
+<app-jugadores *ngFor="let j of jugadores"
+              [jugador]="j" 
+              [equipo]="nombre" 
+              (onActive)="actualizarEstado($event)"></app-jugadores>

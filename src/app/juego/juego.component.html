@@ -1,3 +1,9 @@
-<p>
-  juego works!
-</p>
+<mat-card class="juego-card" *ngFor="let juego of juegos">
+  <mat-card-header>
+    <div mat-card-avatar class="juego-header-image"></div>
+    <mat-card-title>{{ juego.local }} VS </mat-card-title>
+    <mat-card-subtitle>{{ juego.visitante }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+juego">
+</mat-card>

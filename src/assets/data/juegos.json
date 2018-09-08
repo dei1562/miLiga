@@ -1,0 +1,22 @@
+{
+  "data": [
+      {
+        "local": "5a8ce6b1d6901d248e41f5a7",
+        "visitante": "5a8ce67ad6901d248e41f5a6",
+        "fecha": "2018-02-25T17:48:21.099Z",
+        "anotacionesLocal": 0,
+        "anotacionesVisitante": 0,
+        "jugadorDestacado": "Sin jugador destacado",
+        "lugar": "Olímpico"
+      },
+      {
+        "local": "5a8eb6bb5c6d5d5f8accde65",
+        "visitante": "5a8eb6bb5c6d5d5f8accde65",
+        "fecha": "2018-02-25T17:54:21.950Z",
+        "anotacionesLocal": 0,
+        "anotacionesVisitante": 0,
+        "jugadorDestacado": "Sin jugador destacado",
+        "lugar": "Universitario"
+      }
+  ]
+}
