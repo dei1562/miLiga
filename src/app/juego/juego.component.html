@@ -1,9 +1,15 @@
-<mat-card class="juego-card" *ngFor="let juego of juegos">
+<mat-card class="juego-card" flex-sm="25" flex-gt-sm="30" flex="100" *ngFor="let juego of juegos">
   <mat-card-header>
     <div mat-card-avatar class="juego-header-image"></div>
-    <mat-card-title>{{ juego.local }} VS </mat-card-title>
-    <mat-card-subtitle>{{ juego.visitante }}</mat-card-subtitle>
+    <mat-card-title>{{ juego.local }} <strong>{{ juego.anotacionesLocal }}</strong></mat-card-title>
+    <mat-card-subtitle>{{ juego.visitante }} <strong>{{ juego.anotacionesVisitante }}</strong></mat-card-subtitle>
   </mat-card-header>
-
-  <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+juego">
+  <mat-card-content>
+    <ul>
+      <li><strong>Fecha: </strong>{{ juego.fecha | date:'mediumDate' }}</li>
+      <li><strong>Estadio: </strong>{{ juego.lugar }}</li>
+      <li><strong>Jugador destacado: </strong>{{ juego.jugadorDestacado }}</li>  
+    </ul>
+    <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+juego">
+  </mat-card-content>
 </mat-card>
