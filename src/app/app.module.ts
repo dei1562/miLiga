@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatToolbarModule, MatButtonModule, MatCardModule, MatDividerModule, MatExpansionModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, 
+          MatButtonModule, 
+          MatCardModule, 
+          MatDividerModule, 
+          MatExpansionModule, 
+          MatIconModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';

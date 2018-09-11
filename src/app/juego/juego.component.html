@@ -1,15 +1,16 @@
 <mat-card class="juego-card" flex-sm="25" flex-gt-sm="30" flex="100" *ngFor="let juego of juegos">
+  <mat-card-header class="juego-header">
+    <div mat-card-avatar class="juego-header-image"></div>
+    <mat-card-title class="juego-header">{{ juego.local }} <strong>{{ juego.anotacionesLocal }}</strong></mat-card-title>
+  </mat-card-header>
   <mat-card-header>
     <div mat-card-avatar class="juego-header-image"></div>
-    <mat-card-title>{{ juego.local }} <strong>{{ juego.anotacionesLocal }}</strong></mat-card-title>
-    <mat-card-subtitle>{{ juego.visitante }} <strong>{{ juego.anotacionesVisitante }}</strong></mat-card-subtitle>
+    <mat-card-subtitle class="juego-header">{{ juego.visitante }} <strong>{{ juego.anotacionesVisitante }}</strong></mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <ul>
-      <li><strong>Fecha: </strong>{{ juego.fecha | date:'mediumDate' }}</li>
-      <li><strong>Estadio: </strong>{{ juego.lugar }}</li>
-      <li><strong>Jugador destacado: </strong>{{ juego.jugadorDestacado }}</li>  
-    </ul>
+      <p><strong>Fecha: </strong>{{ juego.fecha | date:'mediumDate' }}</p>
+      <p><strong>Estadio: </strong>{{ juego.lugar }}</p>
+      <p><strong>Jugador destacado: </strong>{{ juego.jugadorDestacado }}</p>  
     <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+juego">
   </mat-card-content>
 </mat-card>
