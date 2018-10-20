@@ -1,10 +1,10 @@
 export interface Juego {
-    id?: string,
-    local: string,
-    visitante: string,
+    id?: String,
+    local: String,
+    visitante: String,
     fecha: Date,
     anotacioneslocal: number,
     anotacionesvisitante: number,
-    jugadordestacado: string,
-    lugar: string
+    jugadordestacado: String,
+    lugar: String
 }

@@ -1,28 +1,78 @@
 <p>
-  Equipo: {{ nombre }}
+  Equipo: {{ nombre | uppercase }} 
+  <br>
+    <code> Aficionados : {{aficionados | number }} </code>
+  <br>
+    <code> Porcentaje de efectividad : {{efectividad | percent }} </code>
 </p>
+
+<mat-divider> </mat-divider>
+    <p> presupuesto : {{ presupuesto | currency }} </p>
+<mat-divider> </mat-divider>
 
 <h2>Jugadores</h2>
 
-<mat-accordion class="jugadores-headers-align">
-  <mat-expansion-panel hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{ jugador.nombre }}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{ jugador.posicion }}
-        <mat-icon>account_circle</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    
-    <p>Estado: {{ jugador.estado }}</p>
-  </mat-expansion-panel>
-</mat-accordion>
+<mat-grid-list cols="4" rowHeight="100"> 
+    <mat-grid-tile colspan="1">
+        <p>
+            <code>Ultima actualizacion : {{ actualizado | date : 'mediumDate' }} </code>
+        </p>
+        <p>
+            <code>Ultima hora : {{ actualizado | date : 'shortTime' }} </code>
+        </p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <mat-form-field class="search-input">
+        <input matInput type="search" placeholder="Buscar Jugador" [(ngModel)]="buscador" />
+        <button mat-button matPrefix mat-icon-button>
+          <mat-icon> Search </mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
 
-<mat-divider></mat-divider>
+<mat-grid-list cols="4" style="padding: 10px" *ngIf="jugadores.length >0 else noData">   
 
-<app-jugadores *ngFor="let j of jugadores"
-              [jugador]="j" 
-              [equipo]="nombre" 
-              (onActive)="actualizarEstado($event)"></app-jugadores>
+  <mat-grid-tile rowspan="4">
+
+    <mat-accordion class="jugadores-headers-align">
+      <mat-expansion-panel hideToggle="true" *ngFor="let j of jugadores | filtroPorLetra: buscador; let i = index" [expanded]="step === i">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ j.nombre }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ j.posicion }}
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <p>Edad: {{ j.edad }}</p>
+        <p>Apodo: {{ j.apodo }}</p>
+        <p>Estado: {{ (j.estado) ? 'Activo' : 'Inactivo' }}</p>
+
+        <button *ngIf="!j.estado" mat-raised-button class="primary" (click)="activarJugador(j)">Activar</button>
+      
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngFor="let j of jugadores | filtroPorLetra: buscador; let i=index">
+    <app-jugadores [jugador]="j" 
+                  [equipo]="nombre" 
+                  (onActive)="actualizarEstado(j,i,$event)"
+                  (click)="mostrarDatos(i)"
+                  [ngClass]="{'jugadorInactivo': !j.estado, 'jugadorActivo': j.estado}"
+                  ></app-jugadores>
+  </mat-grid-tile>
+  
+</mat-grid-list>
+
+ <ng-template #noData> 
+  <div class="mat-evaluation-z8 noData">
+      <h2> No hay registro disponibles </h2>
+  </div>
+</ng-template>
+
+<ngx-spinner bdColor = 'rgba(51,51,51,0.8)' size = "medium " color = "#fff" type = "ball-atom"></ngx-spinner>

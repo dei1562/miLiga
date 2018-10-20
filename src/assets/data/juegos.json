@@ -1,5 +1,6 @@
 {
-  "data": [
+  "data":
+    [
       {
         "local": "5a8ce6b1d6901d248e41f5a7",
         "visitante": "5a8ce67ad6901d248e41f5a6",
@@ -18,5 +19,5 @@
         "jugadorDestacado": "Sin jugador destacado",
         "lugar": "Universitario"
       }
-  ]
+    ]
 }

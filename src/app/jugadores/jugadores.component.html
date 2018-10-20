@@ -7,6 +7,6 @@
   <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+jugador">
 
   <mat-card-actions align="end">
-    <button mat-button color="primary" (click)="activarJugador()">Activar</button>
+    <button mat-button color="primary" (click)="desactivarJugador()" [disabled]="!jugador.estado">Desactivar</button>
   </mat-card-actions>
 </mat-card>

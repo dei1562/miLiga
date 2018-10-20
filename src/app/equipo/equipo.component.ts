@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Jugador } from '../_interfaces/jugador';
-
-import * as JUGADORES from './../../assets/data/jugadores.json';
+import { Jugador } from './../_Interface/jugador';
+//import * as JUGADORES from './../../assets/data/jugadores.json';
+import { JugadoresService } from './../jugadores.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-equipo',
@@ -10,9 +11,19 @@ import * as JUGADORES from './../../assets/data/jugadores.json';
 })
 export class EquipoComponent implements OnInit {
 
+
+  step = 0;
   nombre:string = 'Felinos';
   estatus:boolean = false;
+  error : any;
   //jugador: String="Carlos";
+
+  presupuesto = 18000000;
+  actualizado = new Date();
+  aficionados = 15000320;
+  efectividad = 0.8732;
+
+  buscador: string = '';
 
   jugadores:Jugador[];
   
@@ -25,13 +36,14 @@ export class EquipoComponent implements OnInit {
     estado: false
   }
 
-  constructor() { }
+  constructor(private jugadoresService: JugadoresService, private spinner : NgxSpinnerService) { }
 
   ngOnInit() {
     this.nombre = 'Piratas';
 
-    let arrJugadores = JUGADORES as any;
-    this.jugadores = arrJugadores.data;
+  //  let arrJugadores = JUGADORES as any;
+   this.jugadores = [];
+   this.showjugadores();
   }
 
   agregarJugador (){
@@ -41,8 +53,40 @@ export class EquipoComponent implements OnInit {
     this.jugador.nombre = jugador;
   }
 
-  actualizarEstado(event) {
-    this.jugador.estado = event;
+  actualizarEstado(jugador: Jugador, i: number, event) {
+    jugador.estado = event;
+    this.step = i;
+  }
+
+  mostrarDatos (i: number) {
+    this.step = i;
+  }
+
+  activarJugador (jugador: Jugador) {
+    jugador.estado = true;
+  }
+
+  showjugadores(){
+    this.spinner.show();
+    this.jugadores = [];
+
+    this.jugadoresService.getJugadores()
+    .subscribe(
+      (data: Jugador) => {
+        let tmpData = {...data};
+
+        for(let value in tmpData){
+          this.jugadores.push(tmpData[value]);
+        }
+
+        this.spinner.hide();
+      },
+      error => {
+        this.spinner.hide();
+        this.error = error
+      }
+    );
+
   }
 
 }

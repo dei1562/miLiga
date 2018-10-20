@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Jugador } from './../_interfaces/jugador';
+import { Jugador } from './../_Interface/jugador';
 
 @Component({
   selector: 'app-jugadores',
@@ -23,8 +23,9 @@ export class JugadoresComponent implements OnInit {
   ngOnInit() {
   }
 
-  activarJugador() {
-    this.estado.emit(true);
+  desactivarJugador() {
+    this.jugador.estado = false;
+    this.estado.emit(false);
   }
 
 }

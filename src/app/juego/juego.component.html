@@ -1,16 +1,49 @@
-<mat-card class="juego-card" flex-sm="25" flex-gt-sm="30" flex="100" *ngFor="let juego of juegos">
-  <mat-card-header class="juego-header">
-    <div mat-card-avatar class="juego-header-image"></div>
-    <mat-card-title class="juego-header">{{ juego.local }} <strong>{{ juego.anotacionesLocal }}</strong></mat-card-title>
-  </mat-card-header>
-  <mat-card-header>
-    <div mat-card-avatar class="juego-header-image"></div>
-    <mat-card-subtitle class="juego-header">{{ juego.visitante }} <strong>{{ juego.anotacionesVisitante }}</strong></mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-      <p><strong>Fecha: </strong>{{ juego.fecha | date:'mediumDate' }}</p>
-      <p><strong>Estadio: </strong>{{ juego.lugar }}</p>
-      <p><strong>Jugador destacado: </strong>{{ juego.jugadorDestacado }}</p>  
-    <img mat-card-image src="http://via.placeholder.com/200x200?text=Foto+de+juego">
-  </mat-card-content>
-</mat-card>
+<mat-grid-list cols="4" rowHeight="100"> 
+  <mat-grid-tile colspan="1">
+      <p>
+          <code>Ultima actualizacion : {{ actualizado | date : 'mediumDate' }} </code>
+      </p>
+      <p>
+          <code>Ultima hora : {{ actualizado | date : 'shortTime' }} </code>
+      </p>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-form-field class="search-input">
+      <input matInput type="search" placeholder="Buscar Juego" [(ngModel)]="buscador" />
+      <button mat-button matPrefix mat-icon-button>
+        <mat-icon> Search </mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="4" *ngIf="juegos.length > 0 else noData">   
+
+  <mat-grid-tile *ngFor="let juego of juegos | filtroPorLetra: buscador; let i=index">
+    <mat-card class="juego-card">
+      <mat-card-header class="juego-header">
+        <div mat-card-avatar class="juego-header-image"></div>
+        <mat-card-title class="juego-header">{{ juego.nombre_local }} <strong>{{ juego.anotacionesLocal }}</strong></mat-card-title>
+      </mat-card-header>
+      <mat-card-header>
+        <div mat-card-avatar class="juego-header-image"></div>
+        <mat-card-subtitle class="juego-header">{{ juego.nombre_visitante }} <strong>{{ juego.anotacionesVisitante }}</strong></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Fecha: </strong>{{ juego.fecha | date:'mediumDate' }}</p>
+        <p><strong>Estadio: </strong>{{ juego.lugar }}</p>
+        <p><strong>Jugador destacado: </strong>{{ juego.jugadorDestacado }}</p>  
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<ng-template #noData> 
+  <div class="mat-evaluation-z8 noData">
+      <h2> No hay registro disponibles </h2>
+  </div>
+</ng-template>
+
+
+<ngx-spinner bdColor = 'rgba(51,51,51,0.8)' size = "medium " color = "#fff" type = "ball-atom"></ngx-spinner>
